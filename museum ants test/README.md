@@ -11,7 +11,7 @@
    
 ### SNP calling pipeline
 
-Basically the same pipeline is run for the *cflo* and *pbar* data sets, with the code found in their respective folders.
+Basically the same pipeline is run for the [*cflo*](https://github.com/mikheyev/DNA-repair/tree/master/museum%20ants%20test/cflo) and [*pbar*](https://github.com/mikheyev/DNA-repair/tree/master/museum%20ants%20test/pbar) data sets, with the code found in their respective folders.
 
 #### call1.sh
 
@@ -22,4 +22,4 @@ Basically the same pipeline is run for the *cflo* and *pbar* data sets, with the
 
    - perform variant quality score recalibration using BQSR data
 
-**Ouput of the scripts can be found in the [./output](https://github.com/mikheyev/DNA-repair/tree/master/museum%20ants%20test/output) folder.**
+**Ouput of the scripts can be found in the [./output](https://github.com/mikheyev/DNA-repair/tree/master/museum%20ants%20test/output) folder at the root, and also in the *cflo* and *pbar* sub-folders for species-specific analyses.**

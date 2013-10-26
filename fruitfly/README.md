@@ -19,6 +19,7 @@
 
    - perform variant quality score recalibration using BQSR data
 
+**Ouput of the scripts can be found in the [./output](https://github.com/mikheyev/DNA-repair/tree/master/fruitfly/output) folder.**
 ## to do
 - [ ] re-run map.sh and save output files
 - [ ] phylogenetics
