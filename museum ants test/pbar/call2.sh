@@ -12,7 +12,7 @@ export TEMP=/genefs/MikheyevU/temp
 export TMP=/genefs/MikheyevU/temp
 
 MAXMEM=20
-ref=../ref/cflo_3.3.fasta 
+ref=../ref/pbar_1.0.fasta
 alias GA="java -Xmx"$MAXMEM"g -Djava.io.tmpdir=/genefs/MikheyevU/temp -jar /apps/MikheyevU/sasha/GATK/GenomeAnalysisTK.jar"
 alias picard="java -Xmx"$MAXMEM"g -Djava.io.tmpdir=/genefs/MikheyevU/temp -jar /apps/MikheyevU/picard-tools-1.66/"
 
@@ -42,7 +42,8 @@ GA \
    -tranche 99.0 -tranche 90.0 -tranche 80.0 -tranche 70.0 \
    -recalFile data/output.recal \
    -tranchesFile data/output.tranches \
-   --maxGaussians 4 \
+   -numBad 5000 \
+   --maxGaussians 3 \
    -rscriptFile data/plots.R
 
 # Apply VQSR to the data, producing a VCF marked as PASSED for sites that are OK.

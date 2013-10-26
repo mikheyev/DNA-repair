@@ -1,0 +1,6 @@
+ATCACC   hawaiiensis
+GAGGATC  paucipuncta
+TCATC    picticornis
+CGTC anomalipes
+AGATTC   grimshawi
+GTCCAAC  silvestris
