@@ -12,21 +12,21 @@ export TEMP=/genefs/MikheyevU/temp
 export TMP=/genefs/MikheyevU/temp
 
 MAXMEM=65
-ref=../dgri/scaffolds.bases.fa
+ref=./dgri/scaffolds.bases.fa
 alias GA="java -Xmx"$MAXMEM"g -Djava.io.tmpdir=/genefs/MikheyevU/temp -jar /apps/MikheyevU/sasha/GATK/GenomeAnalysisTK.jar"
 alias picard="java -Xmx"$MAXMEM"g -Djava.io.tmpdir=/genefs/MikheyevU/temp -jar /apps/MikheyevU/picard-tools-1.66/"
 
 # Calling annotations 
 
-# GA -nct 12 \
-#    -T HaplotypeCaller\
-#    -mmq 15 \
-#    -R $ref \
-#    -A QualByDepth -A RMSMappingQuality -A FisherStrand -A HaplotypeScore -A InbreedingCoeff -A MappingQualityRankSumTest -A Coverage -A ReadPosRankSumTest -A BaseQualityRankSumTest -A ClippingRankSumTest \
-#    -I data/merged.recal.bam \
-#    --genotyping_mode DISCOVERY \
-#    --heterozygosity 0.005 \
-#    -o data/raw.vcf
+GA -nct 12 \
+   -T HaplotypeCaller\
+   -mmq 15 \
+   -R $ref \
+   -A QualByDepth -A RMSMappingQuality -A FisherStrand -A HaplotypeScore -A InbreedingCoeff -A MappingQualityRankSumTest -A Coverage -A ReadPosRankSumTest -A BaseQualityRankSumTest -A ClippingRankSumTest \
+   -I data/merged.recal.bam \
+   --genotyping_mode DISCOVERY \
+   --heterozygosity 0.005 \
+   -o data/raw.vcf
 
 
 # Variant Quality Score Recalibration (VQSR). Takes known SNP sites and uses them to filter GATK's quality scores by quality.
