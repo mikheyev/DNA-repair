@@ -1,6 +1,6 @@
 # Analysis scripts for RAD-tag and whole genome shotgun sequencing using degraded DNA
 
-### Tin, Economy and Mikheyev, in prep
+### Tin, Economo and Mikheyev, *in prep*
 
 There are two components to this analysis, each with its own code and readme:
 
