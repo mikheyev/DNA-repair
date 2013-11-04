@@ -20,12 +20,15 @@ alias picard="java -Xmx"$MAXMEM"g -Djava.io.tmpdir=/genefs/MikheyevU/temp -jar /
 
  GA -nct 12 \
     -T HaplotypeCaller\
+    -mmq 13 \
     -R $ref \
     -A QualByDepth -A RMSMappingQuality -A HaplotypeScore -A InbreedingCoeff -A MappingQualityRankSumTest -A Coverage -A ReadPosRankSumTest -A BaseQualityRankSumTest -A ClippingRankSumTest \
     -I data/merged.recal.bam \
     --genotyping_mode DISCOVERY \
    --heterozygosity 0.005 \
     -o data/raw.vcf
+
+samtools mpileup -ugf $ref data/merged.recal.bam | bcftools view -vcg - | vcfutils.pl varFilter -Q 20 > data/samtools.vcf
 
 (grep ^# data/raw.vcf ;  intersectBed -wb -a data/samtools.vcf -b data/raw.vcf ) > data/samtools_gatk2.vcf 
 

@@ -19,15 +19,16 @@ alias picard="java -Xmx"$MAXMEM"g -Djava.io.tmpdir=/genefs/MikheyevU/temp -jar /
 # Calling annotations 
 
  GA -nct 12 \
-    -T UnifiedGenotyper\
+    -T HaplotypeCaller\
+    -mmq 13 \
     -R $ref \
     -A QualByDepth -A RMSMappingQuality -A HaplotypeScore -A InbreedingCoeff -A MappingQualityRankSumTest -A Coverage -A ReadPosRankSumTest -A BaseQualityRankSumTest -A ClippingRankSumTest \
     -I data/merged.recal.bam \
     --genotyping_mode DISCOVERY \
    --heterozygosity 0.005 \
-   -out_mode EMIT_ALL_CONFIDENT_SITES\
-   -stand_emit_conf 20 \
     -o data/raw.vcf
+
+samtools mpileup -ugf $ref data/merged.recal.bam | bcftools view -vcg - | vcfutils.pl varFilter -Q 20 > data/samtools.vcf
 
 (grep ^# data/raw.vcf ;  intersectBed -wb -a data/samtools.vcf -b data/raw.vcf ) > data/samtools_gatk2.vcf 
 
@@ -44,7 +45,8 @@ GA \
    -tranche 99.0 -tranche 90.0 -tranche 80.0 -tranche 70.0 \
    -recalFile data/output.recal \
    -tranchesFile data/output.tranches \
-   --maxGaussians 4 \
+   -numBad 5000 \
+   --maxGaussians 3 \
    -rscriptFile data/plots.R
 
 # Apply VQSR to the data, producing a VCF marked as PASSED for sites that are OK.

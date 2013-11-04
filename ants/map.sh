@@ -24,4 +24,4 @@ else
 	ref=lhum
 fi
 
-bowtie2 -p 8 -N 1 -L 20 -i S,1,0.50 -D 20 -R 3  -x ref/$ref -U data/$file --sam-rg ID:$base --sam-rg LB:TdT --sam-rg SM:$base --sam-rg PL:ILLUMINA | samtools view -Su -F4 - | novosort -c 2 --ram 5G -t $TEMP -i -o data/$base.bam -
+bowtie2 -p 8 -N 1 -L 20 -i S,1,0.50 -D 20 -R 3  -x ref/$ref -U data/$file --sam-rg ID:$base --sam-rg LB:TdT --sam-rg SM:$base --sam-rg PL:ILLUMINA | samtools view -Su - | novosort -c 2 --ram 5G -t $TEMP -i -o data/$base.bam -

@@ -16,12 +16,13 @@ ref=../ref/cflo_3.3.fasta
 alias GA="java -Xmx"$MAXMEM"g -Djava.io.tmpdir=/genefs/MikheyevU/temp -jar /apps/MikheyevU/sasha/GATK/GenomeAnalysisTK.jar"
 alias picard="java -Xmx"$MAXMEM"g -Djava.io.tmpdir=/genefs/MikheyevU/temp -jar /apps/MikheyevU/picard-tools-1.66/"
 
-inputs=`for i in ../data/Cflo?.bam ; do echo -ne "-I "$i" "; done`
+inputs=`for i in ../data/Cflo?_nodup.bam ; do echo -ne "-I "$i" "; done`
 
 # # Running first-pass base calls
 
 GA -nct 12\
    -T HaplotypeCaller\
+   -mmq 13 \
    -R $ref \
    $inputs \
    --genotyping_mode DISCOVERY \
@@ -32,7 +33,7 @@ GA -nct 12\
 
 # Running another independet SNP caller
 
-samtools mpileup -ugf $ref ../data/Cflo?.bam | bcftools view -vcg - | vcfutils.pl varFilter -Q 20 > data/samtools.vcf
+samtools mpileup -ugf $ref ../data/Cflo?_nodup.bam | bcftools view -vcg - | vcfutils.pl varFilter -Q 20 > data/samtools.vcf
 
 
 # #Finding sites in common between the two approaches

@@ -16,11 +16,12 @@ ref=../ref/pbar_1.0.fasta
 alias GA="java -Xmx"$MAXMEM"g -Djava.io.tmpdir=/genefs/MikheyevU/temp -jar /apps/MikheyevU/sasha/GATK/GenomeAnalysisTK.jar"
 alias picard="java -Xmx"$MAXMEM"g -Djava.io.tmpdir=/genefs/MikheyevU/temp -jar /apps/MikheyevU/picard-tools-1.66/"
 
-inputs=`for i in ../data/Pbar?.bam ; do echo -ne "-I "$i" "; done`
+inputs=`for i in ../data/Pbar?_nodup.bam ; do echo -ne "-I "$i" "; done`
 
 # # Running first-pass base calls
 
 GA -nct 12\
+  -mmq 13 \
    -T HaplotypeCaller\
    -R $ref \
    $inputs \
