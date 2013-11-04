@@ -19,4 +19,14 @@
 
    - perform variant quality score recalibration using BQSR data
 
+#### vcf2nex.py
+
+   - convert VCF output from SNP caller into a MrBayes nexus file
+
+#### mb.sh
+
+   - execute **fly.nex**, produced by vcf2nex.py and compute phylogeny
+
+
+
 **Ouput of the scripts can be found in the [./output](https://github.com/mikheyev/DNA-repair/tree/master/fruitfly/output) folder.**
