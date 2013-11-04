@@ -21,5 +21,10 @@ Basically the same pipeline is run for the [*cflo*](https://github.com/mikheyev/
 #### call2.sh
 
    - perform variant quality score recalibration using BQSR data
+   - in reality, there are not enough SNPs do do this step
+
+#### dedup.py
+
+   - remove duplicates from a bam file with RAD-tag data with fragmented DNA. Each DNA fragment with a distinct start position and length, is assumed unique.
 
 **Ouput of the scripts can be found in the [./output](https://github.com/mikheyev/DNA-repair/tree/master/museum%20ants%20test/output) folder at the root, and also in the *cflo* and *pbar* sub-folders for species-specific analyses.**
