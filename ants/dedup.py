@@ -15,7 +15,7 @@ for i in glob.glob("data/*.bam"):
 				start = read.positions[0]*-1
 			else:
 				start = read.positions[0]
-			if start not in reads and read.qlen not in reads[start]:
+			if start in reads and read.qlen in reads[start]:
 				duplicates += 1
 				continue
 			else:
